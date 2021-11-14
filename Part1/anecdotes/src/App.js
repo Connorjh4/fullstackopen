@@ -15,8 +15,12 @@ const App = () => {
   const [selected, setSelected] = useState(0)
   
   const randomAnecdote = () => {
-    const generateRandom = Math.floor(Math.random()*(anecdotes.length))
+    let generateRandom = Math.floor(Math.random()*(anecdotes.length))
+    while(generateRandom === selected){
+      generateRandom = Math.floor(Math.random()*(anecdotes.length))
+    }
     setSelected(generateRandom)
+    console.log(generateRandom)
   }
 
   const vote = () => {
