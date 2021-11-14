@@ -1,0 +1,22 @@
+title Single Note Page App (0.5)
+
+
+Browser-->Server:HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server-->Browser:HTML Code
+Browser->Server:HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser:main.css
+Browser->Server:HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server-->Browser:spa.js
+
+note over Browser:
+browser starts executing js-code
+that requests JSON data from the server
+end note
+
+Browser->Server: https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: [{"content":"testing 3","date":"2021-11-14T00:43:56.000Z"}, ...]
+
+note over Browser:
+On window.load, redrawNotes funtion is 
+executed rendering notes to view
+end note
