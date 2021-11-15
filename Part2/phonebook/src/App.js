@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Filter from './components/filter';
+import AddContact from './components/addContact';
+import Contacts from './components/contacts';
+import Notification from './components/notification';
 
-function App() {
+const App = () => {
+    const [ persons, setPersons ] = useState([]) 
+    const [ filterPerson, setFilterPerson ] = useState('')
+    const [ message, setMessage ] = useState(null)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <h1>Phonebook</h1>
+        <Filter 
+            filterPerson={filterPerson} 
+            setFilterPerson={setFilterPerson}
+        />
+        <Notification 
+          message={message}
+        />
+        <h2>Add new</h2>
+        <AddContact 
+            persons={persons}
+            setPersons={setPersons}
+            setMessage={setMessage}
+        />
+        <h2>Contacts</h2>
+        <Contacts 
+            persons={persons}
+            filterPerson={filterPerson}
+            setPersons={setPersons}
+            setMessage={setMessage}
+        />  
     </div>
-  );
+  )
 }
 
 export default App;

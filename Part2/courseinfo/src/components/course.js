@@ -6,7 +6,7 @@ const Courses = ({ course }) => {
 
   return (
     <div>
-      <h2 key={course.id} >{course.name}</h2>
+      <h2 key={course.id}>{course.name}</h2>
       <Parts 
         key={course.parts.id} 
         parts={course.parts} 
