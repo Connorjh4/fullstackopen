@@ -26,7 +26,7 @@ export const AddContact = ({ persons, setPersons, setMessage }) => {
             })
             setTimeout(() => {
                 setMessage(null)
-            },5000)
+            },3500)
             error = true
         }
         if(newName === ''){
@@ -36,7 +36,7 @@ export const AddContact = ({ persons, setPersons, setMessage }) => {
             })
             setTimeout(() => {
                 setMessage(null)
-            },5000)
+            },3500)
             error = true
         }
         if(duplicateNumber){
@@ -46,7 +46,7 @@ export const AddContact = ({ persons, setPersons, setMessage }) => {
             })
             setTimeout(() => {
                 setMessage(null)
-            },5000)
+            },3500)
             error = true
             setNewNumber('')
             setNewName('')
@@ -59,7 +59,7 @@ export const AddContact = ({ persons, setPersons, setMessage }) => {
                 contactService
                     .update(id, changedContact)
                         .then(returnedContact => {
-                            setPersons(persons.map(person => person.id !== id ? person : returnedContact))
+                            setPersons(persons.map(person => person.id === returnedContact.id ? returnedContact : person))
                             setMessage({
                                 text: `${duplicateName.name}'s number has been updated`,
                                 color: 'green'
@@ -78,24 +78,33 @@ export const AddContact = ({ persons, setPersons, setMessage }) => {
                 }
         }
         if(!error){
-        const personObject = {
-            name: newName,
-            number: newNumber,
-        }
-        contactService
-            .create(personObject)
-                .then(returnedContact => {
+            const personObject = {
+                name: newName,
+                number: newNumber,
+            }
+            contactService
+                .create(personObject)
+                .then(createdContact => {
                     setMessage({
                         text: `Added ${newName}`,
                         color: 'green'
                     })
-                    setPersons(persons.concat(returnedContact))
+                    setPersons(persons.concat(createdContact))
                     setTimeout(() => {
                         setMessage(null)
-                    }, 5000)
+                    }, 3500)
                     setNewName('')
                     setNewNumber('')
 
+                })
+                .catch(e => {
+                    setMessage({
+                        text: `${e.response.data.error}`,
+                        color: 'red'
+                    })
+                    setTimeout(() => {
+                        setMessage(null)
+                    }, 3500)
                 })
         }
     }
