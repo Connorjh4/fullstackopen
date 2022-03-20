@@ -38,28 +38,21 @@ blogsRouter.post('/', middleware.userExtractor, async (req, res) => {
   res.status(201).json(savedBlog.toJSON())
 })
 
-blogsRouter.put('/:id', middleware.userExtractor, async (req, res) => {
+blogsRouter.put('/:id', async (req, res) => {
   const body = req.body
-  const blog = await Blog.findById(req.params.id)
 
-  const updateBlog = {
+  const blog = {
     title: body.title,
     author: body.author,
     url: body.url,
-    likes: body.likes
+    likes: body.likes,
   }
 
-  if (!req.token) {
-    res.status(401).json({ error: 'missing token' })
-  } else if (!blog) {
-    res.status(401).json({ error: 'invalid blog id' })
-  } else if (blog.user.toString() === req.user.id) {
-    const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, updateBlog, { new: true })
+  const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, blog, { new: true })
+  if(updatedBlog) {
     res.status(200).json(updatedBlog.toJSON())
   } else {
-    res.status(401).json({
-      error: 'User does not have authorization'
-    })
+    res.status(401).end()
   }
 })
 
