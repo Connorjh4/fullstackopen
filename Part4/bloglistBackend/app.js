@@ -7,6 +7,8 @@ const cors = require('cors')
 const loginRouter = require('./controllers/login')
 const blogsRouter = require('./controllers/blogs')
 const usersRouter = require('./controllers/users')
+const commentsRouter = require('./controllers/comments')
+// const likesRouter = require('./controllers/likes')
 
 const config = require('./utils/config')
 const logger = require('./utils/logger')
@@ -17,9 +19,7 @@ logger.info('connecting to', config.mongoURI)
 
 mongoose.connect(config.mongoURI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
+  useUnifiedTopology: true
 })
   .then(() => {
     console.log('connected to mongodb')
@@ -37,6 +37,9 @@ app.use(middleware.tokenExtractor)
 app.use('/api/login', loginRouter)
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/blogs/:id/comments', commentsRouter)
+// app.use('/api/blogs/:id/likes', likesRouter)
+
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')

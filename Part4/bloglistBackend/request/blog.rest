@@ -2,7 +2,7 @@ POST http://localhost:3003/api/login
 Content-Type: application/json
 
 {
-    "username": "usernameTest",
+    "username": "usernameTest1",
     "password": "superSafePassword"
 }
 
@@ -14,9 +14,9 @@ POST http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-    "notes": [],
-    "username": "usernameTest4",
-    "name": "nameTest4",
+    "blogs": [],
+    "username": "usernameTest1",
+    "name": "nameTest1",
     "password": "superSafePassword"
 }
 
@@ -29,30 +29,42 @@ GET http://localhost:3003/api/blogs/619c82d279f51053561727c2
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lVGVzdCIsImlkIjoiNjFjYmMxNDMxZjgyYjViMTJlYjE2NTNhIiwiaWF0IjoxNjQ0MjkwNzUzLCJleHAiOjE2NDQyOTQzNTN9.NEg9tnzEHOUd1o0CCZii3PnEtYxG8143ljtOoWjL8oA
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lVGVzdDEiLCJpZCI6IjYyZGY3OGIxZDQ0YzU2M2UzMDk2Mzk0MiIsImlhdCI6MTY2MTEzODMyMCwiZXhwIjoxNjYxMTk4MzIwfQ.0j3uYXadHm2VwdQdQrzYnVw-NhuntneROh5grnr_JHM
 
 {
-    "title": "dont work1",
-    "author": "noooo",
-    "url": "noooo",
-    "likes": 10
+    "title": "Testing 343",
+    "author": "yuup",
+    "url": "noooo"
 }
 
 ###
-Put http://localhost:3003/api/blogs/61fcc6569d9e585abc1e5cb2
+PUT http://localhost:3003/api/blogs/6302f63d89d377464246afbb
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lVGVzdCIsImlkIjoiNjFjYmMxNDMxZjgyYjViMTJlYjE2NTNhIiwiaWF0IjoxNjQ0Mjg3NTUxLCJleHAiOjE2NDQyOTExNTF9.y3ZAcOTeBevuz32T6a1wnGyHd3GZfiMx1DnvwE4e2ys
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lVGVzdDEiLCJpZCI6IjYyZGY3OGIxZDQ0YzU2M2UzMDk2Mzk0MiIsImlhdCI6MTY2MTEzODMyMCwiZXhwIjoxNjYxMTk4MzIwfQ.0j3uYXadHm2VwdQdQrzYnVw-NhuntneROh5grnr_JHM
 
 {
-    "title": "update test shit",
+    "title": "New type of update",
     "author": "update shit",
-    "url": "update test",
-    "likes": 231
+    "url": "update test"
 }
 
 ###
-Delete http://localhost:3003/api/blogs/6201e17803eb7f22d1ade14b
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lVGVzdCIsImlkIjoiNjFjYmMxNDMxZjgyYjViMTJlYjE2NTNhIiwiaWF0IjoxNjQ0Mjg3NTUxLCJleHAiOjE2NDQyOTExNTF9.y3ZAcOTeBevuz32T6a1wnGyHd3GZfiMx1DnvwE4e2ys
+DELETE http://localhost:3003/api/blogs/6302f63d89d377464246afbb
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lVGVzdDEiLCJpZCI6IjYyZGY3OGIxZDQ0YzU2M2UzMDk2Mzk0MiIsImlhdCI6MTY2MTEzODMyMCwiZXhwIjoxNjYxMTk4MzIwfQ.0j3uYXadHm2VwdQdQrzYnVw-NhuntneROh5grnr_JHM
 
 ###
-Delete http://localhost:3003/api/users/61fdb79232a16f62f45316bc
+DELETE http://localhost:3003/api/users/61fdb79232a16f62f45316bc
+
+###
+POST http://localhost:3003/api/blogs/63000dc3858eec64703a07a1/comments
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lVGVzdDEiLCJpZCI6IjYyZGY3OGIxZDQ0YzU2M2UzMDk2Mzk0MiIsImlhdCI6MTY2MDk0Nzg5NCwiZXhwIjoxNjYxMDA3ODk0fQ.j1PoKwZmqqAkpj4PhE4tzVL3bCjtvJT__3L8ShNquJE
+
+{
+    "comment": "Testing comment saved to blog"
+}
+
+###
+POST http://localhost:3003/api/blogs/63000dc3858eec64703a07a1/likes
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lVGVzdDEiLCJpZCI6IjYyZGY3OGIxZDQ0YzU2M2UzMDk2Mzk0MiIsImlhdCI6MTY2MTEwODY4MiwiZXhwIjoxNjYxMTY4NjgyfQ.in4aKj5K7SHw0uf2_W2dKaBF4jxOjlxpoczs1ob8azs
